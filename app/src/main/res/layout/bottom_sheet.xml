@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary"
+    android:layout_height="wrap_content"
+    app:behavior_hideable="false"
+    app:behavior_peekHeight="142dp"
+    android:id="@+id/bottom_sheet"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    android:orientation="vertical"
+
+    >
+<RelativeLayout
+    android:background="@color/colorPrimaryDark"
+    android:layout_width="match_parent"
+    android:layout_height="65dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:text="bottoms sheet"
+        android:textColor="@android:color/white"
+        />
+</RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="#80000000"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/timer_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00:00:00"
+            android:layout_marginBottom="10dp"
+            android:textSize="40sp"
+             />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/start_bt"
+            android:layout_width="match_parent"
+            android:textColor="@android:color/black"
+            android:text="start"
+            android:layout_height="wrap_content"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/stop_bt"
+            android:layout_width="match_parent"
+            android:textColor="@android:color/black"
+            android:text="stop"
+            android:layout_height="wrap_content"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/pause_bt"
+            android:layout_width="match_parent"
+            android:textColor="@android:color/black"
+            android:text="pause"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</LinearLayout>

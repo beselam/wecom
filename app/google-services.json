@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "314070789783",
+    "firebase_url": "https://wecom-ac8fc.firebaseio.com",
+    "project_id": "wecom-ac8fc",
+    "storage_bucket": "wecom-ac8fc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:314070789783:android:fa85216f4464fd13a603d2",
+        "android_client_info": {
+          "package_name": "com.example.wecom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "314070789783-3jve7k2qk8pu4u5elr3vr9lk8d4nk6tc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRnh6ht22_9rwMGP0hTopmSHric43TBBo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "314070789783-3jve7k2qk8pu4u5elr3vr9lk8d4nk6tc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

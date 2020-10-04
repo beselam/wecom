@@ -10,5 +10,6 @@ object Constants {
     const val NOTIFICATION_ID = 10
     const val SHOW_TRACKING_FRAGMENT = "SHOW_TRACKING_FRAGMENT"
      const val PERMISSION_CODE_FOR_LOCATION = 2
+    const val NODE_RUNS = "runs"
 
 }

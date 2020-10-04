@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.example.wecom.db.ExerciseDataBase
 import com.example.wecom.others.Constants.DATABASE_NAME
+import com.google.firebase.database.FirebaseDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,4 +24,10 @@ import javax.inject.Singleton
     @Singleton
     @Provides
     fun provideExerciseDao(db:ExerciseDataBase) = db.getExerciseDao()
+
+    @Singleton
+    @Provides
+    fun provideFirebaseDatabase():FirebaseDatabase{
+        return FirebaseDatabase.getInstance()
+    }
 }

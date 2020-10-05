@@ -8,13 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.example.wecom.R
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_splash.*
 
 class SplashFragment:Fragment(R.layout.fragment_splash) {
+    lateinit var auth: FirebaseAuth
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,6 +33,20 @@ class SplashFragment:Fragment(R.layout.fragment_splash) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        auth = FirebaseAuth.getInstance()
+        if (auth.currentUser != null) {
+            auth?.let {
+                val navOptions = NavOptions.Builder()
+                    .setPopUpTo(R.id.splashFragment, true)
+                    .build()
+                findNavController().navigate(
+                    R.id.to_home_screen,
+                    savedInstanceState,
+                    navOptions
+                )
+            }
+        }
+
         val animtop =  AnimationUtils.loadAnimation(activity, R.anim.top_animation)
         val animbt =  AnimationUtils.loadAnimation(activity, R.anim.bottom_animation)
         val animFromLeft =  AnimationUtils.loadAnimation(activity, R.anim.slid_from_left_animation)
@@ -57,4 +74,10 @@ class SplashFragment:Fragment(R.layout.fragment_splash) {
         }
 
     }
+
+    override fun onStart() {
+        super.onStart()
+
+    }
+
 }

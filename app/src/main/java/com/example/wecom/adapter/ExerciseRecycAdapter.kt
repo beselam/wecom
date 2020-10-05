@@ -8,9 +8,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wecom.R
 import com.example.wecom.db.Exercise
+import com.example.wecom.others.AppUtility
+import kotlinx.android.synthetic.main.main_recycler_card_s.view.*
 import java.text.SimpleDateFormat
 import java.util.*
-/*
+
 
 class  ExerciseRecycAdapter : RecyclerView.Adapter<ExerciseRecycAdapter.RunViewHolder>() {
 
@@ -33,7 +35,7 @@ class  ExerciseRecycAdapter : RecyclerView.Adapter<ExerciseRecycAdapter.RunViewH
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RunViewHolder {
         return RunViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.item_run,
+                R.layout.main_recycler_card_s,
                 parent,
                 false
             )
@@ -45,28 +47,28 @@ class  ExerciseRecycAdapter : RecyclerView.Adapter<ExerciseRecycAdapter.RunViewH
     }
 
     override fun onBindViewHolder(holder: RunViewHolder, position: Int) {
-     */
-/*   val run = differ.currentList[position]
+
+  val exercise = differ.currentList[position]
         holder.itemView.apply {
 
             val calendar = Calendar.getInstance().apply {
-                timeInMillis = run.timestamp
+                timeInMillis = exercise.exerciseDate
             }
             val dateFormat = SimpleDateFormat("dd.MM.yy", Locale.getDefault())
-            tvDate.text = dateFormat.format(calendar.time)
+            date_recycler_card.text = dateFormat.format(calendar.time)
 
-            val avgSpeed = "${run.avgSpeedInKMH}km/h"
-            tvAvgSpeed.text = avgSpeed
+            val avgSpeed = "${exercise.averageSpeed}km/h"
+            speed_recycler_card.text = avgSpeed
 
-            val distanceInKm = "${run.distanceInMeters / 1000f}km"
-            tvDistance.text = distanceInKm
+            val distanceInKm = "${exercise.distanceInMeters / 1000f}km"
+            totalKm_recycler_card.text = distanceInKm
 
-            tvTime.text = TrackingUtility.getFormattedStopWatchTime(run.timeInMillis)
+            time_taken_recycler_card.text = AppUtility.createFormattedTime(exercise.exerciseTimeInMillis)
 
-            val caloriesBurned = "${run.caloriesBurned}kcal"
-            tvCalories.text = caloriesBurned
-        } *//*
+            val caloriesBurned = "${exercise.caloriesBurned}kcal"
+            calori_recycler_card.text = caloriesBurned
+        }
 
     }
 }
-*/
+

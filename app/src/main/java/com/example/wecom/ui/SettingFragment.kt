@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.fragment_setting.*
 import kotlinx.android.synthetic.main.fragment_setting.email_profile_et
 import kotlinx.android.synthetic.main.fragment_setting.profile_upfate_bt
 import kotlinx.android.synthetic.main.fragment_setting.username_profile_et
-import kotlinx.android.synthetic.main.fragment_sign_up.*
 
 
 class SettingFragment :Fragment(R.layout.fragment_setting){
@@ -39,7 +38,7 @@ class SettingFragment :Fragment(R.layout.fragment_setting){
 
     fun setupUi(user:FirebaseUser) {
         Log.d("user","$user.displayName $user.displayName")
-        profile_fullname_field_tv.text = user.displayName
+        profile_full_name_field_tv.text = user.displayName
         username_profile_et.setText(user.displayName)
         email_profile_et.setText(user.email)
 

@@ -18,6 +18,7 @@
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animm"
+            android:contentDescription="@string/athletics_animation"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="30dp"
@@ -34,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/bangers"
-            android:text="wecom"
+            android:text="@string/application_logo_name_wecom"
             android:textColor="@android:color/white"
             android:textSize="45sp"
             tools:layout_editor_absoluteX="150dp"
@@ -44,7 +45,7 @@
             android:id="@+id/appMotoTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Run to compete"
+            android:text="@string/title"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
 
@@ -64,7 +65,7 @@
             android:layout_height="48dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/custom_btn_splash"
-            android:text="Sign IN"
+            android:text="@string/sign_in"
             style="?android:attr/borderlessButtonStyle"
             android:textColor="@android:color/black"
             android:transitionName="loginTransition"
@@ -76,7 +77,7 @@
             android:layout_width="300dp"
             android:layout_height="48dp"
             android:background="@drawable/custom_btn_splash"
-            android:text="Sign UP"
+            android:text="@string/sign_up"
             style="?android:attr/borderlessButtonStyle"
             android:textColor="@android:color/black"
             tools:layout_editor_absoluteX="231dp"

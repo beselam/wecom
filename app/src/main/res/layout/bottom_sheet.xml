@@ -4,12 +4,11 @@
     android:id="@+id/bottom_sheet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#80ffffff"
+    android:background="@color/background_color_bottom_sheet"
     android:gravity="center"
     android:orientation="vertical"
     app:behavior_hideable="false"
     app:behavior_peekHeight="100dp"
-
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <RelativeLayout
@@ -25,6 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:src="@drawable/ic_detail"
+            android:contentDescription="@string/bottom_sheet_slider"
             android:textColor="@android:color/darker_gray" />
 
 
@@ -35,33 +35,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="00:00:00:00"
+        android:text="@string/timer_text_bottom_sheet"
         android:textSize="40sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content">
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content">
-
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="#80ffffff"
+        android:background="@color/background_color_bottom"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingStart="30dp"
@@ -76,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/custom_back_buttom_sheet"
-            android:text="start"
+            android:text="@string/start_text"
             android:textColor="@android:color/black" />
 
         <Button
@@ -86,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/custom_back_buttom_sheet"
-            android:text="Finish exercise"
+            android:text="@string/finish_exercise_bottom_sheet"
             android:textColor="@android:color/black"
             android:visibility="gone" />
 
@@ -95,7 +75,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="#80ffffff"
+        android:background="@color/background_color_button_bottom"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingStart="30dp"
@@ -109,7 +89,7 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:background="@drawable/custom_back_buttom_sheet"
-            android:text="pause"
+            android:text="@string/pause_bottom_sheet"
             android:textColor="@android:color/black"
             android:visibility="gone" />
 
@@ -121,7 +101,7 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:background="@drawable/custom_back_buttom_sheet"
-            android:text="Resume"
+            android:text="@string/resume_bottom_sheet"
             android:textColor="@android:color/black"
             android:visibility="gone" />
 
@@ -133,7 +113,7 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:background="@drawable/custom_cancel_buttom_sheet"
-            android:text="cancel"
+            android:text="@string/cancel_bottom_sheet"
             android:textColor="@android:color/holo_red_dark"
             android:visibility="gone" />
 

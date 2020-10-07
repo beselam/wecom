@@ -38,6 +38,7 @@
                   android:layout_height="50dp"
                   app:srcCompat="@drawable/ic_running_shoes"
                   android:scaleType="centerCrop"
+                  android:contentDescription="runner_shoe_icon"
                   />
               </LinearLayout>
               <LinearLayout
@@ -96,7 +97,7 @@
                                 android:layout_width="70dp"
                                 android:layout_height="match_parent"
                                 android:src="@drawable/ic_fast_food"
-
+                                android:contentDescription="@string/calori_burned_icon"
                                 />
                             <TextView
                                 android:layout_width="wrap_content"
@@ -148,7 +149,7 @@
                             android:layout_width="70dp"
                             android:layout_height="50dp"
                             android:src="@drawable/ic_speedometer"
-
+                            android:contentDescription="speedometer_icon"
                             />
 
                         <TextView

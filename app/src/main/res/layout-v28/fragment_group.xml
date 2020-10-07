@@ -29,8 +29,7 @@
             app:expandedTitleMarginTop="10dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
             app:contentScrim="?attr/colorPrimary"
-            app:statusBarScrim="?attr/colorPrimaryVariant"
-            tools:targetApi="p">
+            app:statusBarScrim="?attr/colorPrimaryVariant">
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/animm"
@@ -52,21 +51,21 @@
                 android:id="@+id/tabWinner"
                 android:layout_width="match_parent"
                 android:layout_gravity="bottom"
-                android:background="@color/background_group"
-                app:tabTextColor="@color/text_color_tab_group"
+                android:background="#e7e7e7"
+                app:tabTextColor="#4a4a4a"
                 android:layout_height="wrap_content">
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:id="@+id/runTracker"
                     android:layout_height="wrap_content"
-                    android:text="@string/today_s_leaders"
+                    android:text="TODAY'S LEADERS"
                     />
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:id="@+id/bickTracker"
                     android:layout_height="wrap_content"
-                    android:text="@string/my_best_10_group"
+                    android:text="MY BEST 10"
                     />
 
             </com.google.android.material.tabs.TabLayout>

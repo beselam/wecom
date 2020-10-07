@@ -3,4 +3,22 @@
     <color name="colorPrimary">#9d4edd</color>
     <color name="colorPrimaryDark">#5a189a</color>
     <color name="colorAccent">#c77dff</color>
+    <color name="logo_background_white">#fff</color>
+    <color name="transparent_background">#00000000</color>
+    <color name="sign_up_white_background">#fff</color>
+    <color name="sign_up_background_color_white">#fff</color>
+    <color name="sign_up_text_color">#000</color>
+    <color name="button_background_color">#fff</color>
+    <color name="background_color_home">#f0f0f0</color>
+    <color name="background_group">#e7e7e7</color>
+    <color name="text_color_tab_group">#4a4a4a</color>
+    <color name="background_color_bottom_sheet">#80ffffff</color>
+    <color name="background_color_bottom">#80ffffff</color>
+    <color name="background_color_button_bottom">#80ffffff</color>
+    <color name="background_color_main">#f0f0f0</color>
+    <color name="gray_bottom_nav">#717171</color>
+    <color name="gray_back_button">#80ffffff</color>
+    <color name="light_blue_custom">#a8dadc</color>
+    <color name="white_background_custom">#e0e0e0</color>
+    <color name="gray_cancel_button">#80ffffff</color>
 </resources>

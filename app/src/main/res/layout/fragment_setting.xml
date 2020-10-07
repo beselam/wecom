@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -21,19 +20,20 @@
                 android:id="@+id/profile_image"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:contentDescription="@string/logo"
                 android:layout_centerVertical="true"
                 android:src="@drawable/logo" />
 
             <TextView
-                android:id="@+id/profile_fullname_field_tv"
+                android:id="@+id/profile_full_name_field_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/profile_image"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/profile_image"
                 android:fontFamily="@font/roboto_medium"
                 android:includeFontPadding="false"
-                android:text="Taimoor Sikander"
+                android:text="@string/text_view_setting"
                 android:textColor="@android:color/white"
                 android:textSize="25sp" />
 
@@ -63,8 +63,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="User profile"
-                        android:textSize="20dp" />
+                        android:text="@string/user_profile_setting"
+                        android:textSize="20sp" />
                 </RelativeLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -86,7 +86,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="username"
+            android:hint="@string/username_setting"
             android:textColorHint="@android:color/darker_gray"
             app:boxStrokeColor="@color/colorPrimary"
             app:boxStrokeWidthFocused="2dp"
@@ -113,7 +113,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:hint="@string/email_setting"
             app:errorEnabled="true"
             android:textColorHint="@android:color/darker_gray"
             app:boxStrokeColor="@color/colorPrimary"
@@ -145,9 +145,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/custom_btn"
-            android:text="update"
-            style="?android:attr/borderlessButtonStyle"
+            android:text="@string/update_setting"
 
+            style="?android:attr/borderlessButtonStyle"
             android:textColor="@android:color/white" />
 
         <Button
@@ -156,7 +156,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/custom_btn_logout"
-            android:text="logout"
+            android:text="@string/logout_setting"
+
             style="?android:attr/borderlessButtonStyle"
             android:textColor="@android:color/black" />
 

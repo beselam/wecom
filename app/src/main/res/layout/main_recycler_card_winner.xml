@@ -1,0 +1,87 @@
+<com.google.android.material.card.MaterialCardView android:id="@+id/card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:elevation="10dp"
+    app:cardCornerRadius="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+          <androidx.cardview.widget.CardView
+              android:layout_width="match_parent"
+
+              android:background="@android:color/black"
+              android:elevation="10dp"
+              android:layout_gravity="center"
+              android:layout_height="wrap_content">
+
+              <LinearLayout
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:gravity="center"
+                  >
+
+
+              <ImageView
+                  android:layout_width="50dp"
+                  android:layout_marginTop="4dp"
+                  android:layout_marginStart="10dp"
+                  android:layout_height="50dp"
+                  android:layout_marginEnd="20dp"
+                  app:srcCompat="@drawable/ic_running_shoes"
+                  android:scaleType="centerCrop"
+                  />
+
+
+                  <!-- Title, secondary and supporting text -->
+
+                  <ImageView
+                      android:layout_width="30dp"
+                      android:layout_marginEnd="5dp"
+                      android:layout_height="30dp"
+                      android:src="@drawable/ic_distance"
+                      />
+                  <TextView
+                      android:layout_width="100dp"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/distance_winner_recycler_card"
+                      tools:text="distance"
+                      tools:textColor="@android:color/black"
+                      android:textColor="@android:color/black"
+                      android:textAppearance="?attr/textAppearanceHeadline6"
+                      />
+
+                  <ImageView
+                      android:layout_marginStart="20dp"
+                      android:layout_width="30dp"
+                      android:layout_marginEnd="5dp"
+                      android:layout_height="30dp"
+                      android:src="@drawable/ic_calories"
+                      />
+                  <TextView
+
+                      android:id="@+id/calorie_winner_recycler_card"
+                      android:layout_width="100dp"
+                      android:layout_height="wrap_content"
+                      tools:text="distance"
+                      tools:textColor="@android:color/black"
+                      android:textColor="@android:color/black"
+                      android:textAppearance="?attr/textAppearanceHeadline6"
+                      />
+
+
+
+              </LinearLayout>
+
+          </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+
+
+</com.google.android.material.card.MaterialCardView>

@@ -26,19 +26,11 @@ import pub.devrel.easypermissions.EasyPermissions
 
 @AndroidEntryPoint
 class HomeFragment:Fragment(R.layout.fragment_home),EasyPermissions.PermissionCallbacks {
-  //  val db = Firebase.firestore
-    val myFirestore = MyFirestore()
-
 
     private val viewModel: MainViewModel by viewModels()
     private lateinit var mainadapter:ExerciseRecycAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         super.onViewCreated(view, savedInstanceState)
-        val exe = ExerciseFstore("ll","ss","ss",2
-            ,3,5.5.toFloat())
-
-        myFirestore.saveExerciseToFstore(exe)
         requestPermissions()
         setUpRecycler()
         fab.setOnClickListener {

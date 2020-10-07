@@ -65,6 +65,7 @@
             android:layout_marginBottom="20dp"
             android:background="@drawable/custom_btn_splash"
             android:text="Sign IN"
+            style="?android:attr/borderlessButtonStyle"
             android:textColor="@android:color/black"
             android:transitionName="loginTransition"
             tools:layout_editor_absoluteX="42dp"
@@ -76,6 +77,7 @@
             android:layout_height="48dp"
             android:background="@drawable/custom_btn_splash"
             android:text="Sign UP"
+            style="?android:attr/borderlessButtonStyle"
             android:textColor="@android:color/black"
             tools:layout_editor_absoluteX="231dp"
             tools:layout_editor_absoluteY="383dp" />

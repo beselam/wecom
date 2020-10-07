@@ -16,6 +16,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.example.wecom.R
 import com.example.wecom.db.Exercise
+import com.example.wecom.firestore.ExerciseFstore
+import com.example.wecom.firestore.MyFirestore
 import com.example.wecom.others.AppUtility
 import com.example.wecom.others.Constants.PAUSE_SERVICE
 import com.example.wecom.others.Constants.START_SERVICE
@@ -28,8 +30,10 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.PolylineOptions
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.bottom_sheet.*
+import kotlinx.android.synthetic.main.fragment_group.*
 import kotlinx.android.synthetic.main.fragment_map.*
 import java.util.*
 import javax.inject.Inject
@@ -37,7 +41,9 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class LocationTrackerFragment : Fragment(R.layout.fragment_location_tracker) {
 
-  //  private val firebaseFireStore = FirebaseFireStore()
+
+
+    private  val  myFirestore= MyFirestore()
     private var map: GoogleMap? = null
     private var isServiceGoing = false
     private var isServicePaused = false
@@ -80,6 +86,8 @@ class LocationTrackerFragment : Fragment(R.layout.fragment_location_tracker) {
         subscribeToObservers()
     }
 
+
+
     private fun cancelExersice(saveToDb:Boolean) {
         var title = "cancel exercise"
         var message = "are sure you need to cancel the exercise with out saving "
@@ -113,6 +121,7 @@ class LocationTrackerFragment : Fragment(R.layout.fragment_location_tracker) {
         // Set other dialog properties
         alertDialog.setCancelable(false)
         alertDialog.show()
+
     }
 
     private fun toggleButton(serviceStarted: Boolean, servicePaused: Boolean) {
@@ -214,7 +223,7 @@ class LocationTrackerFragment : Fragment(R.layout.fragment_location_tracker) {
             map?.animateCamera(
                 CameraUpdateFactory.newLatLngZoom(
                     locationData.last().last(),
-                    12f
+                    15f
                 )
             )
         }
@@ -248,7 +257,6 @@ class LocationTrackerFragment : Fragment(R.layout.fragment_location_tracker) {
 
     private fun endRunAndSaveToDb() {
         Log.d("dataaa distance","$locationData")
-
             var distanceInMeters = 0
             for(polyline in locationData) {
                 distanceInMeters += AppUtility.calculatePolylineLength(polyline).toInt()
@@ -257,10 +265,11 @@ class LocationTrackerFragment : Fragment(R.layout.fragment_location_tracker) {
             val dateTimestamp = Calendar.getInstance().timeInMillis
             val caloriesBurned = ((distanceInMeters / 1000f) * weight).toInt()
             val exercise = Exercise(dateTimestamp, distanceInMeters,caloriesBurned,avgSpeed,exerciseTimeInMillis)
-                //val fbDate = AppUtility.getFormatedDay()
-              //  var exerciseFbase = ExerciseFbase("","de")
-            viewModel.insertExercise(exercise)
-              //  firebaseFireStore.saveExerciseToFstore(exerciseFbase)
+                val date = AppUtility.getFormatedDay()
+                val userId = myFirestore.getUserId()
+                var exerciseFs = ExerciseFstore(userId!!,"run",date,distanceInMeters,caloriesBurned,avgSpeed,exerciseTimeInMillis)
+                viewModel.insertExercise(exercise)
+                myFirestore.saveExerciseToFstore(exerciseFs)
 
             Snackbar.make(
                 requireActivity().findViewById(R.id.mainActivity),
@@ -269,6 +278,9 @@ class LocationTrackerFragment : Fragment(R.layout.fragment_location_tracker) {
             ).show()
         }
     }
+
+
+
 }
 
 

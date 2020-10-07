@@ -146,6 +146,8 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/custom_btn"
             android:text="update"
+            style="?android:attr/borderlessButtonStyle"
+
             android:textColor="@android:color/white" />
 
         <Button
@@ -155,6 +157,7 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/custom_btn_logout"
             android:text="logout"
+            style="?android:attr/borderlessButtonStyle"
             android:textColor="@android:color/black" />
 
     </LinearLayout>

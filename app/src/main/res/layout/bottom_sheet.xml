@@ -1,106 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorPrimary"
-    android:layout_height="wrap_content"
-    app:behavior_hideable="false"
-    app:behavior_peekHeight="142dp"
-    android:gravity="center"
     android:id="@+id/bottom_sheet"
-    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-    android:orientation="vertical"
-
-    >
-<RelativeLayout
-    android:background="@color/colorPrimaryDark"
     android:layout_width="match_parent"
-    android:layout_height="65dp">
+    android:layout_height="wrap_content"
+    android:background="#80ffffff"
+    android:gravity="center"
+    android:orientation="vertical"
+    app:behavior_hideable="false"
+    app:behavior_peekHeight="100dp"
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_detail"
-        android:textColor="@android:color/white"
-        />
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <RelativeLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_height="40dp"
+        android:background="@drawable/custom_button_button_sheet">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_detail"
+            android:textColor="@android:color/darker_gray" />
 
 
-</RelativeLayout>
+    </RelativeLayout>
+
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/timer_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="00:00:00:00"
         android:layout_marginBottom="10dp"
-        android:textSize="40sp"
-        />
+        android:text="00:00:00:00"
+        android:textSize="40sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="#80000000"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:orientation="horizontal"
+        android:background="#80ffffff"
         android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
 
         >
 
-
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/start_bt"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="@android:color/black"
+            android:background="@drawable/custom_back_buttom_sheet"
             android:text="start"
-            android:layout_height="wrap_content"/>
-        <com.google.android.material.button.MaterialButton
+            android:textColor="@android:color/black" />
+
+        <Button
             android:id="@+id/finish_exercise_bt"
-            android:layout_weight="1"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
-            android:visibility="gone"
-            android:textColor="@android:color/black"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/custom_back_buttom_sheet"
             android:text="Finish exercise"
-            android:layout_height="wrap_content"/>
+            android:textColor="@android:color/black"
+            android:visibility="gone" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="#80000000"
-        android:orientation="horizontal"
+        android:background="#80ffffff"
         android:gravity="center"
-        >
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/pause_bt"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_margin="10dp"
-        android:textColor="@android:color/black"
-        android:text="pause"
-        android:visibility="gone"
-        android:layout_height="wrap_content"/>
+        android:orientation="horizontal"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp">
 
-        <com.google.android.material.button.MaterialButton
+        <Button
+            android:id="@+id/pause_bt"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_back_buttom_sheet"
+            android:text="pause"
+            android:textColor="@android:color/black"
+            android:visibility="gone" />
+
+        <Button
             android:id="@+id/resume_bt"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:textColor="@android:color/black"
+            android:layout_weight="1"
+            android:background="@drawable/custom_back_buttom_sheet"
             android:text="Resume"
-            android:visibility="gone"
-            android:layout_height="wrap_content"/>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/cancel_bt"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_margin="10dp"
             android:textColor="@android:color/black"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/cancel_bt"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_cancel_buttom_sheet"
             android:text="cancel"
-            android:visibility="gone"
-            android:layout_height="wrap_content"/>
-</LinearLayout>
+            android:textColor="@android:color/holo_red_dark"
+            android:visibility="gone" />
+
+    </LinearLayout>
 </LinearLayout>
 

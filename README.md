@@ -62,8 +62,8 @@
 ---------------------
 
 
-<img src="hdi.png" width="800"> <img src="hdi2.png" width="800"> 
-<img src="xhdi.png" width="800"> <img src="xhdi2.png" width="800">
+<img src="hdi.Png" width="800"> <img src="hdi2.Png" width="800"> 
+<img src="xhdi.Png" width="800"> <img src="xhdi2.Png" width="800">
 
 
 

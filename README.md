@@ -63,7 +63,7 @@
 
 
 <img src="app/hdi.PNG" width="400"> <img src="app/hdi2.PNG" width="400"> 
-<img src="app/xhdi.PNG" width="400"> <img src="app/xhdi2.PNG" width="400">
+<img src="app/xhdi.PNG" width="500"> <img src="app/xhdi2.PNG" width="500">
 
 
 

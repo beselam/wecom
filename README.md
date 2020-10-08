@@ -26,11 +26,7 @@
  
  - Instant Prizing                                        
  - SnackBar 
- - recive and send ChatMessage  
- - Drag and drop recycler view animation 
- - time stamp  
- - cardView holder 
- - user frindly and stable UI 
+ - transition animation
 
 
 ---------------------------------------------------------
@@ -52,14 +48,13 @@
  
  |  Librarys           |           usage                                     | 
  | ----------------    |:----------------------------------------------------|
- 
- |  picasso            |  create a circulate image view in the recyclerView  |   
+   
  -----------------------------------------------------------------------------
- |  circular imageView |  create a circulate image view in the recyclerView  |
+ |  LottieFiels        |  for animation                                      |
  -----------------------------------------------------------------------------
- |  cardView           |  Display a recycler view single item                |
+ |  material design    |  for material components                            |
  -----------------------------------------------------------------------------
- |  Dagger-Hilt          |  for dependency-Injection                         |
+ |  Dagger-Hilt        |  for dependency-Injection                           |
  -----------------------------------------------------------------------------
  
 ## photos

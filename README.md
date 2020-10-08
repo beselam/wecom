@@ -62,7 +62,7 @@
 ---------------------
 
 
-<img src="wecom/app/hdi.PNG" width="800"> <img src="wecom/app/hdi2.PNG" width="800"> 
+<img src="app/hdi.PNG" width="800"> <img src="wecom/app/hdi2.PNG" width="800"> 
 <img src="wecom/app/xhdi.PNG" width="800"> <img src="wecom/app/xhdi2.PNG" width="800">
 
 

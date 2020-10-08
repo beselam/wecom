@@ -62,4 +62,8 @@
 ---------------------
 
 
-<img src="Capture1.png" width="800">
+<img src="hdi.png" width="800"> <img src="hdi2.png" width="800"> 
+<img src="xhdi.png" width="800"> <img src="xhdi2.png" width="800">
+
+
+

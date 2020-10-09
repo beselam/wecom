@@ -11,6 +11,7 @@ import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 
 class MyFirestore {
@@ -18,21 +19,22 @@ class MyFirestore {
     val exerciseCollectionRef= Firebase.firestore.collection("exercise")
     val auth = FirebaseAuth.getInstance()
 
-    companion object{
         val winnerListByDistance = MutableLiveData<MutableList<ExerciseFstore>>()
-        val winnerListByCalorie = MutableLiveData<MutableList<ExerciseFstore>>()
-        val userDataList = MutableLiveData<MutableList<ExerciseFstore>>()
+        val userExerciseList = MutableLiveData<MutableList<ExerciseFstore>>()
+        val loading = MutableLiveData(false)
+        val userRank= MutableLiveData<Int>()
 
-    }
-
+// save exercise to the firestrore
     fun saveExerciseToFstore(exerciseFbase: ExerciseFstore) = CoroutineScope(Dispatchers.IO).launch {
-       Log.d("exxx",exerciseFbase.toString())
+       loading.postValue(true)
         exerciseCollectionRef.add(exerciseFbase).addOnSuccessListener {
-            retrieveExerciseDistance()
-           retrieveUserExercise()
+            retrieveExerciseByDistance()
+            retrieveUserExercise()
+            loading.postValue(false)
 
     }.addOnFailureListener {
         Log.d("xerror firestore upload","eerrrr")
+            loading.postValue(false)
     }
     }
 
@@ -44,10 +46,17 @@ class MyFirestore {
         }
         return null
     }
-
+// get user id
     fun getUserId():String?{
         auth?.let {
             return it.currentUser!!.uid
+        }
+        return null
+    }
+    fun getUserWeight():String?{
+        auth.let {
+            if (it.currentUser!!.photoUrl != null)
+            return it.currentUser!!.photoUrl.toString()
         }
         return null
     }
@@ -55,9 +64,11 @@ class MyFirestore {
 
 
 
- fun retrieveUserExercise() = CoroutineScope(Dispatchers.IO).launch {
-        val id = getUserId()
 
+// get the user exercise
+ fun retrieveUserExercise() {
+        loading.postValue(true)
+        val id = getUserId()
         val list = mutableListOf<ExerciseFstore>()
         try {
             exerciseCollectionRef
@@ -69,11 +80,12 @@ class MyFirestore {
                     for (exercise in document){
                         var exerciseFbase = exercise.toObject<ExerciseFstore>()
                         list.add(exerciseFbase)
-                        Log.d("mfireee", exerciseFbase.toString()
+                        Log.d("userex", exerciseFbase.toString()
                         )
                     }
-                    userDataList.postValue(list)
-                    Log.d("mfireData", "DocumentSnapshot data: " +
+                    userExerciseList.postValue(list)
+                    loading.postValue(false)
+                    Log.d("userex", "DocumentSnapshot data: " +
                             "}")
                 } else {
                     Log.d("fireData", "No such document")
@@ -81,14 +93,16 @@ class MyFirestore {
 
             }.addOnFailureListener {
                 Log.d("fireData", "No such document")
+                    loading.postValue(false)
             }
         }catch (e:Exception){
-
+            loading.postValue(false)
         }
     }
 
-
-    fun retrieveExerciseDistance() = CoroutineScope(Dispatchers.IO).launch {
+//get 10 best of the day from firestore
+    fun retrieveExerciseByDistance() {
+    loading.postValue(true)
         val date = AppUtility.getFormatedDay()
 
         val list = mutableListOf<ExerciseFstore>()
@@ -106,17 +120,41 @@ class MyFirestore {
                             )
                         }
                         winnerListByDistance.postValue(list)
-                        Log.d("mfireData", "DocumentSnapshot data: " +
-                                "}")
+                        loading.postValue(false)
                     } else {
                         Log.d("fireData", "No such document")
                     }
 
                 }.addOnFailureListener {
                     Log.d("fireData", "No such document")
+                    loading.postValue(false)
                 }
         }catch (e:Exception){
+            loading.postValue(false)
 
         }
+    }
+
+  suspend  fun getUserRank () = CoroutineScope(Dispatchers.IO).launch {
+       loading.postValue(true)
+        val date = AppUtility.getFormatedDay()
+        val list = mutableListOf<String>()
+            exerciseCollectionRef
+                .whereEqualTo("exerciseDate",date)
+                .orderBy("distanceInMeters", Query.Direction.DESCENDING)
+                .get().addOnSuccessListener {document->
+                    if (document != null) {
+                        for (exercise in document){
+                            var exerciseFbase = exercise.toObject<ExerciseFstore>()
+                            list.add(exerciseFbase.idUser)
+                            Log.d("mfireee", exerciseFbase.toString()
+                            )
+                            userRank.postValue(list.indexOf(getUserId()))
+                        }
+
+
+                    }
+    }
+
     }
 }

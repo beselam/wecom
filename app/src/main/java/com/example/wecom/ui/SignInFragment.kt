@@ -17,35 +17,34 @@ import kotlinx.android.synthetic.main.fragment_sign_in.profile_page_passw_et
 import kotlinx.coroutines.*
 import java.lang.Exception
 
-class SignInFragment:Fragment(R.layout.fragment_sign_in) {
-  lateinit var auth: FirebaseAuth
+// sign in the user
+class SignInFragment : Fragment(R.layout.fragment_sign_in) {
+    lateinit var auth: FirebaseAuth
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()
         forgetPassword_bt.setOnClickListener {
-
-            //navHostFragment.findNavController().navigate(R.id.action_signInFragment_to_signUpFragment)
-
             val editText = EditText(it.context)
             resetEmail(editText)
         }
         login_Bt.setOnClickListener {
-         val email =   login_page_email_et.text.toString()
-           val password = profile_page_passw_et.text.toString()
-            val valid = validateForm(email,password)
-            if (valid){
-                signin(email,password)
+            val email = login_page_email_et.text.toString()
+            val password = profile_page_passw_et.text.toString()
+            val valid = validateForm(email, password)
+            if (valid) {
+                signin(email, password)
             }
         }
 
         login_new_user_bt.setOnClickListener {
-            navHostFragment.findNavController().navigate(R.id.action_signInFragment_to_signUpFragment)
+            navHostFragment.findNavController()
+                .navigate(R.id.action_signInFragment_to_signUpFragment)
 
         }
 
     }
 
-    fun resetEmail(editText: EditText){
+    fun resetEmail(editText: EditText) {
 
         val builder = AlertDialog.Builder(context)
         //set title for alert dialog
@@ -56,7 +55,7 @@ class SignInFragment:Fragment(R.layout.fragment_sign_in) {
         builder.setView(editText)
 
         //performing positive action
-        builder.setPositiveButton("Yes"){dialogInterface, which ->
+        builder.setPositiveButton("Yes") { dialogInterface, which ->
             val email = editText.text.toString()
             if (email.isNotEmpty()) {
                 auth.sendPasswordResetEmail(email).addOnSuccessListener(OnSuccessListener {
@@ -70,10 +69,10 @@ class SignInFragment:Fragment(R.layout.fragment_sign_in) {
             }
         }
         //performing cancel action
-        builder.setNeutralButton("Cancel"){dialogInterface , which ->
+        builder.setNeutralButton("Cancel") { dialogInterface, which ->
         }
         //performing negative action
-        builder.setNegativeButton("No"){dialogInterface, which ->
+        builder.setNegativeButton("No") { dialogInterface, which ->
         }
         // Create the AlertDialog
         val alertDialog: AlertDialog = builder.create()
@@ -83,24 +82,27 @@ class SignInFragment:Fragment(R.layout.fragment_sign_in) {
     }
 
 
-    fun signin(email:String,password:String){
+    fun signin(email: String, password: String) {
         CoroutineScope(Dispatchers.IO).launch {
-          try {
-              auth.signInWithEmailAndPassword(email,password).addOnSuccessListener( OnSuccessListener {
+            try {
+                auth.signInWithEmailAndPassword(email, password)
+                    .addOnSuccessListener(OnSuccessListener {
 
-                  Toast.makeText(context,"signed in",Toast.LENGTH_LONG).show()
-                  navHostFragment.findNavController().navigate(R.id.action_signInFragment_to_homeFragment2)
+                        Toast.makeText(context, "signed in", Toast.LENGTH_LONG).show()
+                        navHostFragment.findNavController()
+                            .navigate(R.id.action_signInFragment_to_homeFragment2)
 
-              }).addOnFailureListener(OnFailureListener {
-                  Toast.makeText(context,"${it.message}",Toast.LENGTH_LONG).show()
-                  
+                    }).addOnFailureListener(OnFailureListener {
+                        Toast.makeText(context, "${it.message}", Toast.LENGTH_LONG).show()
 
-              })
 
-          }catch (e:Exception){
-              withContext(Dispatchers.Main) {
-                  Toast.makeText(context,"${e.message}",Toast.LENGTH_LONG).show()              }
-          }
+                    })
+
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(context, "${e.message}", Toast.LENGTH_LONG).show()
+                }
+            }
         }
     }
 
@@ -110,12 +112,10 @@ class SignInFragment:Fragment(R.layout.fragment_sign_in) {
         password: String,
     ): Boolean {
 
-       if (email.isEmpty()){
-           login_page_email_et.error = "email field is empty"
+        if (email.isEmpty()) {
+            login_page_email_et.error = "email field is empty"
             return false
-        }
-
-        else if (password.isEmpty()){
+        } else if (password.isEmpty()) {
             profile_page_passw_et.error = "password field is empty"
             return false
         }

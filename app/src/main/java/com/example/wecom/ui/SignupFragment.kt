@@ -17,7 +17,6 @@ import kotlinx.coroutines.*
 
 class SignupFragment : Fragment(R.layout.fragment_sign_up) {
     lateinit var auth: FirebaseAuth
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()
@@ -27,7 +26,6 @@ class SignupFragment : Fragment(R.layout.fragment_sign_up) {
                 .navigate(R.id.action_signUpFragment_to_signInFragment)
         }
         createAccount_bt.setOnClickListener {
-            // navHostFragment.findNavController().navigate(R.id.action_signUpFragment_to_homeFragment2)
             registerUser()
         }
     }
@@ -47,8 +45,6 @@ class SignupFragment : Fragment(R.layout.fragment_sign_up) {
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
                                 // Sign in success, update UI with the signed-in user's information
-                                Log.d("signed in", "createUserWithEmail:success")
-
                                 val navOptions = NavOptions.Builder()
                                     .setPopUpTo(R.id.splashFragment, true)
                                     .build()
@@ -58,11 +54,13 @@ class SignupFragment : Fragment(R.layout.fragment_sign_up) {
                                     navOptions
                                 )
                                 updateProfile(userName)
+                                Toast.makeText(
+                                    context, "Default weight is 75 please update your weight",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                                 //updateUI(user)
                             } else {
                                 // If sign in fails, display a message to the user.
-                                Log.w("sign in", "createUserWithEmail:failure", task.exception)
-
                                 Toast.makeText(
                                     context, "Authentication failed ${task.exception!!.message}",
                                     Toast.LENGTH_SHORT
@@ -88,33 +86,41 @@ class SignupFragment : Fragment(R.layout.fragment_sign_up) {
         username: String
     ): Boolean {
 
-        if (username.isEmpty()) {
-            username_profile_et.error = "username field is empty"
-            return false
-        } else if (username.length > 15) {
-            username_profile_et.error = "username to long"
-            return false
-        } else if (email.isEmpty()) {
-            email_profile_et.error = "email field is empty"
-            return false
-        } else if (password.isEmpty()) {
-            profile_page_passw_et.error = "password field is empty"
-            return false
-        } else if (password.length < 4) {
-            profile_page_passw_et.error = "password must be at least 4 characters"
-            return false
-        } else if (confirmPassord.isEmpty()) {
-            signup_confirm_pw_et.error = "confirm password field is empty"
-            return false
-        } else if (password != confirmPassord) {
-            signup_confirm_pw_et.error = "password does not match"
-            profile_page_passw_et.error = "password does not match"
+        when {
+            username.isEmpty() -> {
+                username_profile_et.error = "username field is empty"
+                return false
+            }
+            username.length > 15 -> {
+                username_profile_et.error = "username to long"
+                return false
+            }
+            email.isEmpty() -> {
+                email_profile_et.error = "email field is empty"
+                return false
+            }
+            password.isEmpty() -> {
+                profile_page_passw_et.error = "password field is empty"
+                return false
+            }
+            password.length < 7 -> {
+                profile_page_passw_et.error = "password must be at least 7 characters"
+                return false
+            }
+            confirmPassord.isEmpty() -> {
+                signup_confirm_pw_et.error = "confirm password field is empty"
+                return false
+            }
+            password != confirmPassord -> {
+                signup_confirm_pw_et.error = "password does not match"
+                profile_page_passw_et.error = "password does not match"
+            }
         }
         return true
 
     }
 
-
+// update profile
     private fun updateProfile(username: String) {
         var user = auth.currentUser
         val profileUpdates = UserProfileChangeRequest.Builder()

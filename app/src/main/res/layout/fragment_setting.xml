@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,14 +20,6 @@
             android:layout_height="230dp"
             android:background="@color/colorPrimary"
             android:padding="20dp">
-
-            <ImageView
-                android:id="@+id/profile_image"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:contentDescription="@string/logo"
-                android:layout_centerVertical="true"
-                android:src="@drawable/logo" />
 
             <TextView
                 android:id="@+id/profile_full_name_field_tv"
@@ -81,37 +78,59 @@
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:orientation="vertical">
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/username_setting"
-            android:textColorHint="@android:color/darker_gray"
-            app:boxStrokeColor="@color/colorPrimary"
-            app:boxStrokeWidthFocused="2dp"
-            app:endIconMode="clear_text"
-            app:errorEnabled="true"
-            app:endIconTint="@android:color/darker_gray"
-            app:hintTextColor="@android:color/black"
-            app:startIconDrawable="@drawable/ic_userp"
-            app:startIconTint="@android:color/darker_gray">
-
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/username_profile_et"
-                android:layout_width="match_parent"
+            android:orientation="horizontal">
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/antic"
-                android:inputType="text"
-                android:textColor="@android:color/black"
-                android:textCursorDrawable="@null" />
+                android:hint="@string/username_setting"
+                android:textColorHint="@android:color/darker_gray"
+                app:boxStrokeColor="@color/colorPrimary"
+                app:boxStrokeWidthFocused="2dp"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:endIconTint="@android:color/darker_gray"
+                app:hintTextColor="@android:color/black"
+                app:startIconDrawable="@drawable/ic_userp"
+                app:startIconTint="@android:color/darker_gray">
 
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/username_profile_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/antic"
+                    android:inputType="text"
+                    android:textColor="@android:color/black"
+                    android:textCursorDrawable="@null" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/profile_update_name"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="update"
+                style="?android:attr/borderlessButtonStyle"
+                android:textColor="@android:color/black" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="3"
             android:layout_height="wrap_content"
             android:hint="@string/email_setting"
             app:errorEnabled="true"
@@ -136,19 +155,59 @@
 
 
         </com.google.android.material.textfield.TextInputLayout>
+            <Button
+                android:id="@+id/profile_update_email"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="update"
+                style="?android:attr/borderlessButtonStyle"
+                android:textColor="@android:color/black" />
 
-
-
-        <Button
-            android:id="@+id/profile_upfate_bt"
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/custom_btn"
-            android:text="@string/update_setting"
+            android:orientation="horizontal">
 
-            style="?android:attr/borderlessButtonStyle"
-            android:textColor="@android:color/white" />
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:hint="@string/weight"
+                app:errorEnabled="true"
+                android:textColorHint="@android:color/darker_gray"
+                app:boxStrokeColor="@color/colorPrimary"
+                app:boxStrokeWidthFocused="2dp"
+                app:endIconMode="clear_text"
+                app:endIconTint="@android:color/darker_gray"
+                app:hintTextColor="@android:color/black"
+                app:startIconDrawable="@drawable/ic_baseline_weight"
+                app:startIconTint="@android:color/darker_gray">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/weight_profile_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/antic"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@android:color/black"
+                    android:textCursorDrawable="@null" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <Button
+                android:id="@+id/profile_update_weight"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="update"
+                style="?android:attr/borderlessButtonStyle"
+                android:textColor="@android:color/black" />
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/profile_logout_bt"
@@ -162,5 +221,6 @@
             android:textColor="@android:color/black" />
 
     </LinearLayout>
+    </LinearLayout>
 
-</LinearLayout>
+</ScrollView>

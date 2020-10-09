@@ -66,4 +66,10 @@
     <string name="pause_button_bottom_sheet">pause_button</string>
     <string name="bottom_navigation_main">bottom_navigation</string>
     <string name="calori_burned_icon">calori_burned_icon</string>
+    <string name="weight">weight</string>
+    <string name="update">update</string>
+    <string name="home">home</string>
+    <string name="exercise">Exercise</string>
+    <string name="group">group</string>
+    <string name="profile">profile</string>
 </resources>

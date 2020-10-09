@@ -14,7 +14,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ServiceComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.scopes.ServiceScoped
-
+// a module for the service class which injects feusedlocation provider a notification
 @Module
 @InstallIn(ServiceComponent::class)
 object ServiceModule {

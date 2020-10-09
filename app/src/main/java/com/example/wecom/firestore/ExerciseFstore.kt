@@ -1,5 +1,5 @@
 package com.example.wecom.firestore
-
+// dataclass for firestore
 data class ExerciseFstore (
     var idUser:String = "",
     var extype:String="run",

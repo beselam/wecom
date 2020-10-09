@@ -61,12 +61,8 @@
             app:destination="@id/locationTrackerFragment" />
     </fragment>
     <fragment
-        android:id="@+id/reviewFragment"
-        android:name="com.example.wecom.ui.ReviewFragment"
-        android:label="ReviewFragment" />
-    <fragment
         android:id="@+id/settingFragment3"
-        android:name="com.example.wecom.ui.SettingFragment"
+        android:name="com.example.wecom.ui.profileFragment"
         android:label="SettingFragment" />
     <fragment
         android:id="@+id/groupFragment"
@@ -76,5 +72,9 @@
         android:id="@+id/locationTrackerFragment"
         android:name="com.example.wecom.ui.LocationTrackerFragment"
         android:label="fragment_location_tracker"
-        tools:layout="@layout/fragment_location_tracker" />
+        tools:layout="@layout/fragment_location_tracker" >
+        <action
+            android:id="@+id/action_locationTrackerFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
+    </fragment>
 </navigation>

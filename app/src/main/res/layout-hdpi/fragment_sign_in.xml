@@ -10,43 +10,43 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/logo_background_white"
-        android:orientation="vertical">
-
-
-        <View
-            android:id="@+id/view"
-            android:background="@color/colorPrimary"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:contentDescription="@string/logo_image"
-            android:layout_height="30dp" />
+            android:layout_height="wrap_content"
+            android:background="@color/logo_background_white"
+            android:orientation="vertical">
 
 
-        <View
-            android:id="@+id/logo_image"
+            <View
+                android:id="@+id/view"
+                android:background="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:contentDescription="@string/logo_image"
+                android:layout_height="30dp" />
+
+
+            <View
+                android:id="@+id/logo_image"
+                android:layout_width="match_parent"
+                android:background="@drawable/wave"
+                android:transitionName="loginTransition"
+                android:layout_height="60dp" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:background="@drawable/wave"
-            android:transitionName="loginTransition"
-            android:layout_height="60dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginBottom="15dp"
-        android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/logo"
-                android:contentDescription="@string/sign_in_logo_image" />
-
-    </LinearLayout>
+                android:contentDescription="@string/sign_in_logo_image"
+                />
+        </LinearLayout>
 
 
         <LinearLayout

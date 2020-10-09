@@ -36,7 +36,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.math.log
 
-
+// foreground service class for tracking location
 @AndroidEntryPoint
 class AppMapService : LifecycleService() {
      private var  firstStart = true

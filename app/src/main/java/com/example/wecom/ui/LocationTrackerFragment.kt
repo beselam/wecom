@@ -2,18 +2,15 @@ package com.example.wecom.ui
 
 import android.app.AlertDialog
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
+import androidx.navigation.fragment.findNavController
 import com.example.wecom.R
 import com.example.wecom.db.Exercise
 import com.example.wecom.firestore.ExerciseFstore
@@ -27,31 +24,25 @@ import com.example.wecom.viewmodel.MainViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.PolylineOptions
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.bottom_sheet.*
-import kotlinx.android.synthetic.main.fragment_group.*
-import kotlinx.android.synthetic.main.fragment_map.*
+import kotlinx.android.synthetic.main.fragment_location_tracker.*
+//import kotlinx.android.synthetic.main.fragment_map.*
 import java.util.*
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class LocationTrackerFragment : Fragment(R.layout.fragment_location_tracker) {
 
-
-
-    private  val  myFirestore= MyFirestore()
+    private val myFirestore = MyFirestore()
     private var map: GoogleMap? = null
     private var isServiceGoing = false
     private var isServicePaused = false
     private var exerciseTimeInMillis = 0L
-    private var weight = 80f
+    var wt = 75F
     private val viewModel: MainViewModel by viewModels()
     private var locationData = mutableListOf(mutableListOf<LatLng>())
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -62,36 +53,23 @@ class LocationTrackerFragment : Fragment(R.layout.fragment_location_tracker) {
             map = it
             createAllPolylines()
         }
-
-        start_bt.setOnClickListener {
-
-            comandToAppMapService(START_SERVICE)
-        }
-        resume_bt.setOnClickListener {
-            comandToAppMapService(START_SERVICE)
-        }
-        pause_bt.setOnClickListener {
-            comandToAppMapService(PAUSE_SERVICE)
-
-        }
-        cancel_bt.setOnClickListener {
-          //  comandToAppMapService(PAUSE_SERVICE)
-            cancelExersice(false)
-        }
-        finish_exercise_bt.setOnClickListener {
-           // comandToAppMapService(STOP_SERVICE)
-            cancelExersice(true)
+        start_bt.setOnClickListener(setClickListner())
+        resume_bt.setOnClickListener(setClickListner())
+        pause_bt.setOnClickListener(setClickListner())
+        cancel_bt.setOnClickListener(setClickListner())
+        finish_exercise_bt.setOnClickListener(setClickListner())
+        observers()
+        myFirestore.getUserWeight()?.let {
+            wt = it.toFloat()
         }
 
-        subscribeToObservers()
     }
 
 
-
-    private fun cancelExersice(saveToDb:Boolean) {
+    private fun cancelExersice(saveToDb: Boolean) {
         var title = "cancel exercise"
         var message = "are sure you need to cancel the exercise with out saving "
-        if (saveToDb){
+        if (saveToDb) {
             title = "finish exercise"
             message = "are you sure you want to finish the exercise"
         }
@@ -105,8 +83,10 @@ class LocationTrackerFragment : Fragment(R.layout.fragment_location_tracker) {
         //performing positive action
         builder.setPositiveButton("Yes") { dialogInterface, which ->
             if (saveToDb) {
-                endRunAndSaveToDb()}
+                endRunAndSaveToDb()
+            }
             comandToAppMapService(STOP_SERVICE)
+            findNavController().navigate(R.id.action_locationTrackerFragment_to_homeFragment2)
         }
         //performing cancel action
         builder.setNeutralButton("Cancel") { dialogInterface, which ->
@@ -147,7 +127,7 @@ class LocationTrackerFragment : Fragment(R.layout.fragment_location_tracker) {
 
         }
     }
-
+// send a command to the service class
     private fun comandToAppMapService(comand: String) {
         Intent(requireContext(), AppMapService::class.java).also {
             it.action = comand
@@ -160,9 +140,7 @@ class LocationTrackerFragment : Fragment(R.layout.fragment_location_tracker) {
         mapView?.onResume()
     }
 
-    /* override fun onMapReady(map: GoogleMap){
-       map.addMarker(MarkerOptions().position(locationData[0][0]))
-   }*/
+
     override fun onStart() {
         super.onStart()
         mapView?.onStart()
@@ -230,7 +208,7 @@ class LocationTrackerFragment : Fragment(R.layout.fragment_location_tracker) {
     }
 
 
-    private fun subscribeToObservers() {
+    private fun observers() {
         AppMapService.isServiceGoing.observe(viewLifecycleOwner, Observer {
             isServiceGoing = it
             toggleButton(isServiceGoing, isServicePaused)
@@ -253,33 +231,71 @@ class LocationTrackerFragment : Fragment(R.layout.fragment_location_tracker) {
         })
 
     }
-// move the google map camera to user total polyline
 
+
+// save to the database
     private fun endRunAndSaveToDb() {
-        Log.d("dataaa distance","$locationData")
-            var distanceInMeters = 0
-            for(polyline in locationData) {
-                distanceInMeters += AppUtility.calculatePolylineLength(polyline).toInt()
-                Log.d("dataaa distance","$distanceInMeters")
-            val avgSpeed = Math.round((distanceInMeters / 1000f) / (exerciseTimeInMillis / 1000f / 60 / 60) * 10) / 10f
+        Log.d("dataaa distance", "$locationData")
+        var distanceInMeters = 0
+        for (polyline in locationData) {
+            distanceInMeters += AppUtility.calculatePolylineLength(polyline).toInt()
+            Log.d("dataaa distance", "$distanceInMeters")
+            val avgSpeed =
+                Math.round((distanceInMeters / 1000f) / (exerciseTimeInMillis / 1000f / 60 / 60) * 10) / 10f
             val dateTimestamp = Calendar.getInstance().timeInMillis
-            val caloriesBurned = ((distanceInMeters / 1000f) * weight).toInt()
-            val exercise = Exercise(dateTimestamp, distanceInMeters,caloriesBurned,avgSpeed,exerciseTimeInMillis)
-                val date = AppUtility.getFormatedDay()
-                val userId = myFirestore.getUserId()
-                var exerciseFs = ExerciseFstore(userId!!,"run",date,distanceInMeters,caloriesBurned,avgSpeed,exerciseTimeInMillis)
-                viewModel.insertExercise(exercise)
-                myFirestore.saveExerciseToFstore(exerciseFs)
+            val caloriesBurned = ((distanceInMeters / 1000f) * wt).toInt()
+            val exercise = Exercise(
+                dateTimestamp,
+                distanceInMeters,
+                caloriesBurned,
+                avgSpeed,
+                exerciseTimeInMillis
+            )
+            val date = AppUtility.getFormatedDay()
+            val userId = myFirestore.getUserId()
+            var exerciseFs = ExerciseFstore(
+                userId!!,
+                "run",
+                date,
+                distanceInMeters,
+                caloriesBurned,
+                avgSpeed,
+                exerciseTimeInMillis
+            )
+            viewModel.insertExercise(exercise)
+            myFirestore.saveExerciseToFstore(exerciseFs)
 
             Snackbar.make(
                 requireActivity().findViewById(R.id.mainActivity),
-                "Run saved successfully",
+                "Your exercise saved successfully",
                 Snackbar.LENGTH_LONG
             ).show()
         }
     }
 
+    // click listner for the buttons
+    fun setClickListner() = View.OnClickListener {
+        when (it) {
+            start_bt -> {
+                comandToAppMapService(START_SERVICE)
+            }
+            resume_bt -> {
+                comandToAppMapService(START_SERVICE)
+            }
+            pause_bt -> {
+                comandToAppMapService(PAUSE_SERVICE)
 
+            }
+            cancel_bt -> {
+                cancelExersice(false)
+            }
+            finish_exercise_bt -> {
+                cancelExersice(true)
+            }
+
+        }
+
+    }
 
 }
 

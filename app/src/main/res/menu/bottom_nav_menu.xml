@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/homeFragment2"
-        android:title="home"
+        android:title="@string/home"
         android:icon="@drawable/ic_home" />
 
-    <item android:id="@+id/reviewFragment"
-        android:title="review"
-        android:icon="@drawable/ic_review" />
+    <item android:id="@+id/locationTrackerFragment"
+        android:title="@string/exercise"
+        android:icon="@drawable/ic_run" />
 
     <item android:id="@+id/groupFragment"
-    android:title="group"
+    android:title="@string/group"
     android:icon="@drawable/ic_group" />
 
     <item android:id="@+id/settingFragment3"
-        android:title="Settings"
-        android:icon="@drawable/ic_setting" />
+        android:title="@string/profile"
+        android:icon="@drawable/ic_profilee" />
 </menu>

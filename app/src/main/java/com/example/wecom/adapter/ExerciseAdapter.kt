@@ -7,13 +7,12 @@ import com.example.wecom.R
 import com.example.wecom.firestore.ExerciseFstore
 import kotlinx.android.synthetic.main.main_recycler_card_s.view.*
 import kotlinx.android.synthetic.main.main_recycler_card_winner.view.*
-
+// an adapter for the group class
 class ExerciseAdapter: RecyclerView.Adapter<ExerciseAdapter.MyViewHolder>() {
     //inner view holder class
     var list = mutableListOf<ExerciseFstore>()
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     }
-    //list of president
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val  inflater = LayoutInflater.from(parent.context).inflate(R.layout.main_recycler_card_winner,parent,false)

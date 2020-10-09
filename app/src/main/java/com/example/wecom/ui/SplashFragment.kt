@@ -15,7 +15,7 @@ import com.example.wecom.R
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_splash.*
-
+// the splash screen for displaying app logo and animation staff
 class SplashFragment:Fragment(R.layout.fragment_splash) {
     lateinit var auth: FirebaseAuth
     override fun onCreateView(
@@ -57,27 +57,20 @@ class SplashFragment:Fragment(R.layout.fragment_splash) {
         animm.animation = animtop
         spalshLogoTv.animation = animFromLeft
         appMotoTv.animation = animFromRight
-
-        signinBt.setOnClickListener {
-           // val imageViewPair = Pair.create<View, String>(signinBt, getString("loginTransition"))
-           // val extras = FragmentNavigatorExtras( signinBt to "loginTransition")
-
-
-
-            val extras = FragmentNavigatorExtras(
-                signinBt to "loginTransition"
-            )
-
-
-            navHostFragment.findNavController().navigate(R.id.action_splashFragment_to_signInFragment,null,null,extras)
-
-        }
-
+        signinBt.setOnClickListener(clickListner())
+        signUpBtln.setOnClickListener(clickListner())
     }
 
-    override fun onStart() {
-        super.onStart()
-
-    }
-
+  fun clickListner() = View.OnClickListener {
+     when(it){
+         signinBt ->{
+             val extras = FragmentNavigatorExtras(
+                 signinBt to "loginTransition")
+             navHostFragment.findNavController().navigate(R.id.action_splashFragment_to_signInFragment,null,null,extras)
+         }
+         signUpBtln ->{
+             navHostFragment.findNavController().navigate(R.id.action_splashFragment_to_signUpFragment)
+         }
+     }
+  }
 }

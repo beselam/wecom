@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.main_recycler_card_s.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-
+// adapter for the home fragment recycler 
 class  ExerciseRecycAdapter : RecyclerView.Adapter<ExerciseRecycAdapter.RunViewHolder>() {
 
     inner class RunViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)

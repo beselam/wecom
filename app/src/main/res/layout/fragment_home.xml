@@ -24,18 +24,5 @@
         app:spanCount="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_add_24"
-        app:backgroundTint="@color/colorAccent"
-        app:fabSize="normal"
-        android:contentDescription="@string/fab_plus_sign_button"
-        app:rippleColor="@android:color/white"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@android:color/black" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -29,9 +29,10 @@
  - Instant Prizing    
  - lottie animations 
  - flat icons 
+ - Jetpack navigation components  
  - transition animation
  - material design components
- - scrachview libraray for revealing user competition rank 
+ - scrachview for revealing user competition rank 
 
 
 ---------------------------------------------------------

@@ -1,6 +1,6 @@
 # wecom - Android-App      
 
-## final version of the app is the final_project
+## final version of the app is the final_project branch
 
  ## Discription 
  -------------------------------------------------------
